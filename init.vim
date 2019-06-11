@@ -52,11 +52,27 @@ Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/davidhalter/jedi-vim'
 Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'https://github.com/easymotion/vim-easymotion'
-Plug 'https://github.com/roxma/nvim-completion-manager'
 "Plug 'https://github.com/w0rp/ale'
 Plug 'https://github.com/tpope/vim-commentary'
 Plug 'https://github.com/flazz/vim-colorschemes'
 Plug 'https://github.com/roxma/clang_complete'
+Plug 'nine2/vim-copyright'
+Plug 'luochen1990/rainbow'
+Plug 'yggdroot/indentline'
+" assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+inoremap <c-c> <ESC>
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+Plug 'ncm2/ncm2-jedi'
 call plug#end()
 " }}}
 
@@ -106,6 +122,7 @@ map <Leader>nt :NERDTreeToggle<CR>
 " {{{ Python Setting
 " jedi
 let g:jedi#completions_enabled = 0
+let g:python3_host_prog = '/Users/eskimo/miniconda3/bin/python'
 " setting hook
 augroup mypython
     autocmd!
@@ -123,7 +140,6 @@ augroup END
 " }}}
 
 " {{{ Basic Setting
-let g:python_host_prog = 'home/zf/anaconda3/bin/python3.6'
 
 set backup             " keep a backup file (restore to previous version)
 set undofile           " keep an undo file (undo changes after closing)
@@ -140,4 +156,20 @@ set cursorline         " hightline current line
 set ignorecase         " ignore search case
 set smartcase          " use case when has upper char in patten
 set hlsearch           " hightlight search
+let g:rainbow_active = 1
 " }}}
+
+" {{{ Copyright Setting
+
+let g:file_copyright_name = "Eskimo"
+let g:file_copyright_email = "zhangfaninner@163.com"
+let g:file_copyright_auto_filetypes = ['sh', 'plx', 'pl', 'pm', 'py', 'python', 'h', 'hpp', 'c', 'cpp', 'java']
+
+"}}}
+
+"{{{ vim-indent
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+let g:indentLine_color_term = 129
+"}}}
+
